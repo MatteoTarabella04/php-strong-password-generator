@@ -1,18 +1,5 @@
 <?php
-/* var_dump('hello'); */
-
-$length = $_GET['pass_length'];
-
-/* var_dump($length); */
-
-// generate pss
-function generate_password($length)
-{
-   if (!empty($_GET['pass_length'])) {
-      $char = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz@#.-!$£%&/()*';
-      return substr(str_shuffle($char), 0, $length);
-   }
-}
+include 'function.php';
 ?>
 
 <!DOCTYPE html>
