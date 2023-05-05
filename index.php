@@ -9,7 +9,7 @@ $length = $_GET['pass_length'];
 function generate_password($length)
 {
    if (!empty($_GET['pass_length'])) {
-      $char = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz';
+      $char = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz@#.-!$£%&/()*';
       return substr(str_shuffle($char), 0, $length);
    }
 }
