@@ -90,7 +90,8 @@ $password = generate_password($length, $char);
                            </label>
                         </div>
                         <div class="form-check">
-                           <input class="form-check-input" type="checkbox" name="letters" value="letters" id="letters">
+                           <input class="form-check-input" type="checkbox" name="letters" value="letters" id="letters"
+                              checked>
                            <label class="form-check-label" for="letters">
                               Letters
                            </label>
