@@ -1,5 +1,29 @@
 <?php
 include 'function.php';
+
+$numbers = '0123456789';
+$up_letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+$low_letters = 'abcdefghijklmnopqrstuvwxyz';
+$symbols = '~!@#$%^&*()_-+={[}]|\:;".?/<>,';
+
+if (!empty($_GET["pass_length"])) {
+   $length = $_GET["pass_length"];
+
+   $char = "";
+   if (!empty($_GET["letters"])) {
+      $char .= $up_letters . $low_letters;
+   }
+   ;
+   if (!empty($_GET["numbers"])) {
+      $char .= $numbers;
+   }
+   ;
+   if (!empty($_GET["symbols"])) {
+      $char .= $symbols;
+   }
+}
+
+$password = generate_password($length, $char);
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +68,7 @@ include 'function.php';
 
             <div class="row row-cols-2">
                <div class="col">
-                  <div class="card-body d-flex flex-column justify-content-between">
+                  <div class="card-body h-100 d-flex flex-column justify-content-between">
                      <div class="top">
                         <strong>Password Length:</strong>
                      </div>
@@ -57,7 +81,32 @@ include 'function.php';
                <div class="col">
                   <div class="card-body d-flex flex-column justify-content-between">
                      <form id="p_len" action="" method="get">
-                        <input type="number" name="pass_length" id="pass_length" min="3" class="form-control w-50">
+                        <div class="mb-3">
+                           <input type="number" name="pass_length" id="pass_length" min="3" class="form-control w-50">
+                        </div>
+                        <div class="mb-3">
+                           <label for="formCheck">
+                              Choose how to compose your password:
+                           </label>
+                        </div>
+                        <div class="form-check">
+                           <input class="form-check-input" type="checkbox" name="letters" value="letters" id="letters">
+                           <label class="form-check-label" for="letters">
+                              Letters
+                           </label>
+                        </div>
+                        <div class="form-check">
+                           <input class="form-check-input" type="checkbox" name="numbers" value="numbers" id="numbers">
+                           <label class="form-check-label" for="numbers">
+                              Numbers
+                           </label>
+                        </div>
+                        <div class="form-check">
+                           <input class="form-check-input" type="checkbox" name="symbols" value="symbols" id="symbols">
+                           <label class="form-check-label" for="symbols">
+                              Symbols
+                           </label>
+                        </div>
                      </form>
                   </div>
                </div>
@@ -66,7 +115,7 @@ include 'function.php';
       </div>
       <h3 class="text-white text-center">
          Your Password:
-         <?= generate_password($length) ?>
+         <?= $password ?>
       </h3>
    </main>
 </body>
